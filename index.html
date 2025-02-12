@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ALM DevOps</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    .form-group input[type="text"],
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ALM DevOps</h1>
+    <form action="#" method="post">
+      <!-- Campos de texto -->
+      <div class="form-group">
+        <label for="nombreApp">Nombre App</label>
+        <input type="text" id="nombreApp" name="nombreApp" required>
+      </div>
+      <div class="form-group">
+        <label for="repositorio">Repositorio</label>
+        <input type="text" id="repositorio" name="repositorio" required>
+      </div>
+      <div class="form-group">
+        <label for="proyecto">Proyecto</label>
+        <input type="text" id="proyecto" name="proyecto" required>
+      </div>
+      
+      <!-- Selects para opciones -->
+      <div class="form-group">
+        <label for="lenguaje">Lenguaje/Framework</label>
+        <select id="lenguaje" name="lenguaje" required>
+          <option value="">Seleccione una opción</option>
+          <option value="java">Java</option>
+          <option value="angular">Angular</option>
+          <option value="node">Node</option>
+          <option value="html">Html</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="uso">Uso</label>
+        <select id="uso" name="uso" required>
+          <option value="">Seleccione una opción</option>
+          <option value="interno">Interno</option>
+          <option value="externo">Externo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Seleccione una opción</option>
+          <option value="front">Front</option>
+          <option value="backent">Backent</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cm">CM</label>
+        <select id="cm" name="cm" required>
+          <option value="">Seleccione una opción</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="secret">Secret</label>
+        <select id="secret" name="secret" required>
+          <option value="">Seleccione una opción</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="volumen">Volumen</label>
+        <select id="volumen" name="volumen" required>
+          <option value="">Seleccione una opción</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      
+      <!-- Botón de envío -->
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+</body>
+</html>
