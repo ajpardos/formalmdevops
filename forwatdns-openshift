@@ -1,0 +1,12 @@
+spec:
+  upstreamResolvers:
+    policy: Sequential
+    protocolStrategy: ""
+    transportConfig: {}
+    upstreams:
+    - port: 53
+      type: Network
+      address: 159.95.1.17
+    - port: 53
+      type: Network
+      address: 159.50.1.17
