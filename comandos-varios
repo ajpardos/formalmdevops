@@ -5,3 +5,15 @@ PATHF="/etc/NetworkManager/dispatcher.d/30-resolv-prepender"
 
 oc get mc "$MC" -o jsonpath="{range .spec.config.storage.files[?(@.path==\"$PATHF\")]}{.contents.source}{\"\n\"}{end}" \
 | sed 's/^data:.*;base64,//' | base64 -d > /tmp/30-resolv-prepender.ed81
+
+
+MC=rendered-worker-ed81e3bcbad77ead587117f03f55aea1
+PATHF="/etc/NetworkManager/dispatcher.d/30-resolv-prepender"
+
+oc get mc "$MC" -o jsonpath="{range .spec.config.storage.files[?(@.path==\"$PATHF\")]}{.contents.source}{\"\n\"}{end}" \
+| sed 's/^data:,//' \
+| python3 - <<'EOF'
+import sys, urllib.parse
+print(urllib.parse.unquote(sys.stdin.read()), end="")
+EOF
+> /tmp/30-resolv-prepender.ed81
