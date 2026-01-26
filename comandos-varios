@@ -1,0 +1,1 @@
+oc get node workerdev5.saoxlp0mocpc01 -o jsonpath='{.metadata.annotations.machineconfiguration\.openshift\.io/desiredConfig}{"\n"}'
