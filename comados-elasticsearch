@@ -1,0 +1,15 @@
+oc exec -n openshift-logging -it $ES_POD -- \
+  curl -s localhost:9200/_cluster/settings?pretty
+
+oc exec -n openshift-logging -it $ES_POD -- \
+  curl -s -X PUT localhost:9200/*/_settings \
+  -H 'Content-Type: application/json' \
+  -d '{"index.blocks.read_only_allow_delete": null}'
+
+oc exec -n openshift-logging -it $ES_POD -- \
+  curl -s -X PUT localhost:9200/_cluster/settings \
+  -H 'Content-Type: application/json' \
+  -d '{"persistent":{"index.blocks.read_only_allow_delete": null},"transient":{"index.blocks.read_only_allow_delete": null}}'
+
+oc exec -n openshift-logging -it $ES_POD -- \
+  curl -s localhost:9200/_cat/indices?v | head
