@@ -13,3 +13,97 @@ oc exec -n openshift-logging -it $ES_POD -- \
 
 oc exec -n openshift-logging -it $ES_POD -- \
   curl -s localhost:9200/_cat/indices?v | head
+
+CA=/etc/elasticsearch/secret/admin-ca
+CERT=/etc/elasticsearch/secret/admin-crt
+KEY=/etc/elasticsearch/secret/admin-key
+
+export ES=https://localhost:9200
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  -X GET "$ES/_cluster/health?pretty"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/nodes?v"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices?v&s=store.size:desc"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices?v&bytes=gb&s=store.size:desc"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices/app-*?v&bytes=gb"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices/infra-*?v&bytes=gb"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices/audit-*?v&bytes=gb"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cat/indices?v&s=docs.count:desc"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  -H "Content-Type: application/json" \
+  -X POST "$ES/app-*/_search" -d '
+{
+  "size": 0,
+  "aggs": {
+    "by_namespace": {
+      "terms": {
+        "field": "kubernetes.namespace_name.keyword",
+        "size": 20
+      }
+    }
+  }
+}'
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  -H "Content-Type: application/json" \
+  -X POST "$ES/app-*/_search" -d '
+{
+  "size": 0,
+  "aggs": {
+    "by_pod": {
+      "terms": {
+        "field": "kubernetes.pod_name.keyword",
+        "size": 20
+      }
+    }
+  }
+}'
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  -H "Content-Type: application/json" \
+  -X POST "$ES/app-*/_search" -d '
+{
+  "size": 0,
+  "aggs": {
+    "by_pod": {
+      "terms": {
+        "field": "kubernetes.pod_name.keyword",
+        "size": 20
+      }
+    }
+  }
+}'
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_all/_settings?pretty" | grep read_only
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cluster/settings?pretty"
+
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  "$ES/_cluster/settings?pretty"
+
+curl --cacert $CA --cert $CERT --key $KEY \
+  -X DELETE "$ES/nombre-del-indice"
+
+
+
+
+
+
