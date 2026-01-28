@@ -52,7 +52,7 @@ curl --cacert $CA --cert $CERT --key $KEY \
   "aggs": {
     "by_namespace": {
       "terms": {
-        "field": "kubernetes.namespace_name.keyword",
+        "field": "kubernetes.namespace_name",
         "size": 20
       }
     }
@@ -67,7 +67,7 @@ curl --cacert $CA --cert $CERT --key $KEY \
   "aggs": {
     "by_pod": {
       "terms": {
-        "field": "kubernetes.pod_name.keyword",
+        "field": "kubernetes.pod_name",
         "size": 20
       }
     }
