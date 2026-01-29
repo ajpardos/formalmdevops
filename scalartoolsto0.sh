@@ -1,0 +1,1 @@
+for ns in $(oc get ns -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'); do oc -n "$ns" get deploy tools >/dev/null 2>&1 && oc -n "$ns" scale deploy tools --replicas=0 && echo "Scaled in $ns"; done
