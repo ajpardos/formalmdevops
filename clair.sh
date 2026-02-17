@@ -34,3 +34,5 @@ for S in $(oc -n registry get secret -o name | egrep 'regional-quay-config-secre
 done
 
 
+oc -n registry get quayregistry regional -o yaml | sed -n '/status:/,$p'
+
