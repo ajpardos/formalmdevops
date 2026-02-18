@@ -10,3 +10,16 @@ spec:
     - port: 53
       type: Network
       address: 159.50.1.17
+
+outputs:
+- name: kafka-out-app
+  type: kafka
+  url: tls://s02vl9916270.fr.net.intra:9093
+  secret:
+    name: kafka-cert
+  tls:
+    securityProfile: {}   # opcional (o lo defines según política)
+  kafka:
+    topic: direct-maggotvillage_v1
+    brokers:
+    - s02vl9916270.fr.net.intra:9093
