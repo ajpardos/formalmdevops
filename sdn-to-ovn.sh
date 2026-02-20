@@ -1,3 +1,7 @@
+
+oc patch network.config.openshift.io cluster --type=merge \
+  -p '{"metadata":{"annotations":{"network.openshift.io/network-type-migration":""}},"spec":{"networkType":"OVNKubernetes"}}'
+
 oc describe network.config.openshift.io cluster
 
 oc get network.config.openshift.io cluster -o jsonpath='{.spec.networkType}{"\n"}'
